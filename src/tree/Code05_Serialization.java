@@ -8,22 +8,21 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 二叉树最大宽度（非二叉树呢）
- * todo 最大宽度 & 最大宽度所在层？
+ * 序列化和反序列化
  */
 public class Code05_Serialization {
 
     public static void main(String[] args) {
-        // todo 根据输入数据构造一颗完全二叉树
-        BinaryTreeNode node4 = new BinaryTreeNode(4);
-        BinaryTreeNode node5 = new BinaryTreeNode(5);
-        BinaryTreeNode node2 = new BinaryTreeNode(2, node4, node5);
-
-        BinaryTreeNode node6 = new BinaryTreeNode(6);
-        BinaryTreeNode node7 = new BinaryTreeNode(7);
-        BinaryTreeNode node3 = new BinaryTreeNode(3, node6, node7);
-
-        BinaryTreeNode node1 = new BinaryTreeNode(1, node2, node3);
+//        BinaryTreeNode node4 = new BinaryTreeNode(4);
+//        BinaryTreeNode node5 = new BinaryTreeNode(5);
+//        BinaryTreeNode node2 = new BinaryTreeNode(2, node4, node5);
+//
+//        BinaryTreeNode node6 = new BinaryTreeNode(6);
+//        BinaryTreeNode node7 = new BinaryTreeNode(7);
+//        BinaryTreeNode node3 = new BinaryTreeNode(3, node6, node7);
+//
+//        BinaryTreeNode node1 = new BinaryTreeNode(1, node2, node3);
+        BinaryTreeNode node1 = U.getBinaryTree(1, 2, 3, 4, 5, 6, 7);
 
         Queue<Integer> queue1 = preOrderSerialize(node1);
         System.out.println(queue1);
