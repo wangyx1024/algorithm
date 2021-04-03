@@ -1,24 +1,24 @@
 package linkedlist;
 
-import datastruct.Node;
-import util.L;
+import datastruct.SingleNode;
 import util.P;
+import util.U;
 
 public class Code01_Reverse {
 
     public static void main(String[] args) {
         int[] arr = {2, 5, 1, 9, 6, 0};
-        Node head = L.getSingleNodeList(arr);
+        SingleNode head = U.getSingleNodeList2(arr);
         P.print(head);
 
-        Node head2 = reverse(head);
+        SingleNode head2 = reverse(head);
         P.print(head2);
     }
 
-    private static Node reverse(Node head) {
-        Node pre = null;
+    private static SingleNode reverse(SingleNode head) {
+        SingleNode pre = null;
         while (head != null) {
-            Node next = head.next;
+            SingleNode next = head.next;
             head.next = pre;
             pre = head;
             head = next;

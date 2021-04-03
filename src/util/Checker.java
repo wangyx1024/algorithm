@@ -41,7 +41,7 @@ public class Checker {
         return arr;
     }
 
-    private static int generateRandomNumNoMoreThan(int value) {
+    public static int generateRandomNumNoMoreThan(int value) {
         return generateRandomPositiveNumNoMoreThan(value) - generateRandomPositiveNumNoMoreThan(value);
     }
 

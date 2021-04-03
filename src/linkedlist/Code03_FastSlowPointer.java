@@ -1,8 +1,8 @@
 package linkedlist;
 
-import datastruct.Node;
-import util.L;
+import datastruct.SingleNode;
 import util.P;
+import util.U;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,16 +15,16 @@ public class Code03_FastSlowPointer {
 
     public static void check(int times, int question) {
         int len = 0;
-        Node head1 = null;
-        Node head2 = null;
+        SingleNode head1 = null;
+        SingleNode head2 = null;
 
         try {
             while (times-- >= 0) {
                 len = times;
-                head1 = L.getSingleNodeList(len);
-                head2 = L.getSingleNodeList(len);
-                Node mid1;
-                Node mid2;
+                head1 = U.getSingleNodeList(len);
+                head2 = U.getSingleNodeList(len);
+                SingleNode mid1;
+                SingleNode mid2;
                 if (question == 1) {
                     mid1 = getMid1(head1);
                     mid2 = easyButSilly1(head2);
@@ -74,14 +74,14 @@ public class Code03_FastSlowPointer {
     /**
      * 【1】奇数返回中点，偶数返回上中点
      */
-    private static Node getMid1(Node head) {
+    private static SingleNode getMid1(SingleNode head) {
         if (head == null) {
             return null;
         }
 
         // fast能走两步就走两步，不能走就return slow
-        Node slow = head;
-        Node fast = head;
+        SingleNode slow = head;
+        SingleNode fast = head;
         while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
@@ -90,13 +90,13 @@ public class Code03_FastSlowPointer {
         return slow;
     }
 
-    private static Node easyButSilly1(Node head) {
+    private static SingleNode easyButSilly1(SingleNode head) {
         if (head == null) {
             return null;
         }
 
         // mid = (len + 1) / 2
-        List<Node> list = new ArrayList<Node>();
+        List<SingleNode> list = new ArrayList<>();
         while (head != null) {
             list.add(head);
             head = head.next;
@@ -111,13 +111,13 @@ public class Code03_FastSlowPointer {
     /**
      * 【2】奇数返回中点，偶数返回下中点
      */
-    private static Node getMid2(Node head) {
+    private static SingleNode getMid2(SingleNode head) {
         if (head == null) {
             return null;
         }
 
-        Node slow = head;
-        Node fast = head;
+        SingleNode slow = head;
+        SingleNode fast = head;
         while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
@@ -130,13 +130,13 @@ public class Code03_FastSlowPointer {
         }
     }
 
-    private static Node easyButSilly2(Node head) {
+    private static SingleNode easyButSilly2(SingleNode head) {
         if (head == null) {
             return null;
         }
 
         // mid = (len + 1) / 2 + 1
-        List<Node> list = new ArrayList<Node>();
+        List<SingleNode> list = new ArrayList<>();
         while (head != null) {
             list.add(head);
             head = head.next;
@@ -156,15 +156,15 @@ public class Code03_FastSlowPointer {
     /**
      * 【3】奇数返回中点前一个，偶数返回上中点前一个
      */
-    private static Node getMid3(Node head) {
+    private static SingleNode getMid3(SingleNode head) {
         if (head == null) {
             return null;
         }
 
-        Node slow = head;
-        Node fast = head;
+        SingleNode slow = head;
+        SingleNode fast = head;
 
-        Node nodeBeforeSlow = null;
+        SingleNode nodeBeforeSlow = null;
         while (fast.next != null && fast.next.next != null) {
             nodeBeforeSlow = slow;
             slow = slow.next;
@@ -174,13 +174,13 @@ public class Code03_FastSlowPointer {
         return nodeBeforeSlow;
     }
 
-    private static Node easyButSilly3(Node head) {
+    private static SingleNode easyButSilly3(SingleNode head) {
         if (head == null) {
             return null;
         }
 
         // mid = (len + 1) / 2 + 1
-        List<Node> list = new ArrayList<Node>();
+        List<SingleNode> list = new ArrayList<>();
         while (head != null) {
             list.add(head);
             head = head.next;
@@ -200,15 +200,15 @@ public class Code03_FastSlowPointer {
     /**
      * 【3】奇数返回中点前一个，偶数返回下中点前一个也就是上中点
      */
-    private static Node getMid4(Node head) {
+    private static SingleNode getMid4(SingleNode head) {
         if (head == null) {
             return null;
         }
 
-        Node slow = head;
-        Node fast = head;
+        SingleNode slow = head;
+        SingleNode fast = head;
 
-        Node nodeBeforeSlow = null;
+        SingleNode nodeBeforeSlow = null;
         while (fast.next != null && fast.next.next != null) {
             nodeBeforeSlow = slow;
             slow = slow.next;
@@ -222,13 +222,13 @@ public class Code03_FastSlowPointer {
         }
     }
 
-    private static Node easyButSilly4(Node head) {
+    private static SingleNode easyButSilly4(SingleNode head) {
         if (head == null) {
             return null;
         }
 
         // mid = (len + 1) / 2 + 1
-        List<Node> list = new ArrayList<Node>();
+        List<SingleNode> list = new ArrayList<>();
         while (head != null) {
             list.add(head);
             head = head.next;

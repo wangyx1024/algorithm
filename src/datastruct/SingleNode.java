@@ -1,20 +1,20 @@
 package datastruct;
 
-public class Node {
+public class SingleNode {
 
     public int value;
-    public Node next;
+    public SingleNode next;
 
-    public Node() {
+    public SingleNode() {
     }
 
-    public Node(int value) {
+    public SingleNode(int value) {
         this.value = value;
     }
 
     public void add(int value) {
         if (this.next == null) {
-            this.next = new Node(value);
+            this.next = new SingleNode(value);
         } else {
             this.next.add(value);
         }

@@ -1,10 +1,10 @@
 package util;
 
-import datastruct.Node;
+import datastruct.SingleNode;
 
 public class P {
 
-    public static void print(Node head) {
+    public static void print(SingleNode head) {
         while (head != null) {
             System.out.print(head.value + " ");
             head = head.next;
@@ -28,6 +28,6 @@ public class P {
     }
 
     public static void divider() {
-        System.out.println("--------------------我是分割线--------------------");
+        System.out.println("\n--------------------我是分割线--------------------");
     }
 }
