@@ -23,46 +23,47 @@ public class Code06_PrintBinaryTree {
 
     private static void reverseInOrderTravel(BinaryTreeNode node, int lvl, String symbol) {
         if (node == null) {
-            printNode("⛔️", symbol, lvl);
+            printNode(lvl, "⛔️", symbol);
             return;
         } else {
             String nodeContent = node.value + "";
             reverseInOrderTravel(node.right, lvl + 1, "⬇️");
-            printNode(nodeContent, symbol, lvl);
+            printNode(lvl, nodeContent, symbol);
             reverseInOrderTravel(node.left, lvl + 1, "⬆️");
         }
     }
 
-    private static void printNode(String nodeContent, String symbol, int lvl) {
-        int width = 20;
-        String nodeValue = symbol + nodeContent + symbol;
-        int nodeValueLength = nodeValue.length();
-        int nodeValueMargin = (int) Math.floor((width - nodeValueLength) / 2D);
-        String nodeValue2 = padding(nodeValue, nodeValueMargin, width, ' ');
-        String tab = getTab((lvl - 1) * width, ' ');
-        String str = tab + nodeValue2;
-        System.out.println(str);
+    private static void printNode(int nodeLvl, String nodeValue, String symbol) {
+        int nodeLen = 20;
+        String nodeContent = symbol + nodeValue + symbol;
+        int nodeContentLen = nodeContent.length();
+        String paddedNodeContent = padding(nodeContent, nodeLen, ' ');
+        String tab = getTab((nodeLvl - 1) * nodeLen, ' ');
+        String rowToPrint = tab + paddedNodeContent;
+        System.out.println(rowToPrint);
     }
 
-    private static String padding(String str, int count, int totalLength, char c) {
+    private static String padding(String originalStr, int terminalLen, char paddingChar) {
+        int originalStrLen = originalStr.length();
+        int paddingLeftLen = (terminalLen - originalStrLen) / 2;
         StringBuilder paddingLeftStr = new StringBuilder();
-        while (count-- > 0) {
-            paddingLeftStr.append(c);
+        while (paddingLeftLen-- > 0) {
+            paddingLeftStr.append(paddingChar);
         }
 
-        count = totalLength - str.length() - count;
+        int paddingRightLen = terminalLen - originalStr.length() - paddingLeftLen;
         StringBuilder paddingRightStr = new StringBuilder();
-        while (count-- > 0) {
-            paddingRightStr.append(c);
+        while (paddingRightLen-- > 0) {
+            paddingRightStr.append(paddingChar);
         }
 
-        return paddingLeftStr + str + paddingRightStr;
+        return paddingLeftStr + originalStr + paddingRightStr;
     }
 
-    private static String getTab(int count, char c) {
+    private static String getTab(int len, char tabChar) {
         StringBuilder tabStr = new StringBuilder();
-        while (count-- > 0) {
-            tabStr.append(c);
+        while (len-- > 0) {
+            tabStr.append(tabChar);
         }
 
         return tabStr.toString();
