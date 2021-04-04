@@ -13,7 +13,7 @@ public class Code06_PrintBinaryTree {
         printTree(root1);
     }
 
-    private static void printTree(BinaryTreeNode root) {
+    public static void printTree(BinaryTreeNode root) {
         if (root == null) {
             return;
         }
@@ -35,12 +35,13 @@ public class Code06_PrintBinaryTree {
         if (node == null) {
             return;
         }
+        int width = 20;
 
         String nodeValue = symbol + node.value + symbol;
         int nodeValueLength = nodeValue.length();
-        int nodeValueMargin = (int) Math.ceil((20 - nodeValueLength) / 2D);
-        String nodeValue2 = padding(nodeValue, nodeValueMargin, 20, ' ');
-        String tab = getTab((lvl - 1) * 20, ' ');
+        int nodeValueMargin = (int) Math.ceil((width - nodeValueLength) / 2D);
+        String nodeValue2 = padding(nodeValue, nodeValueMargin, width, ' ');
+        String tab = getTab((lvl - 1) * width, ' ');
         String str = tab + nodeValue2;
         System.out.println(str);
     }
