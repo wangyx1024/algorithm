@@ -23,23 +23,21 @@ public class Code06_PrintBinaryTree {
 
     private static void reverseInOrderTravel(BinaryTreeNode node, int lvl, String symbol) {
         if (node == null) {
+            printNode("⛔️", symbol, lvl);
             return;
+        } else {
+            String nodeContent = node.value + "";
+            reverseInOrderTravel(node.right, lvl + 1, "⬇️");
+            printNode(nodeContent, symbol, lvl);
+            reverseInOrderTravel(node.left, lvl + 1, "⬆️");
         }
-
-        reverseInOrderTravel(node.right, lvl + 1, "⬇️");
-        printNode(node, symbol, lvl);
-        reverseInOrderTravel(node.left, lvl + 1, "⬆️");
     }
 
-    private static void printNode(BinaryTreeNode node, String symbol, int lvl) {
-        if (node == null) {
-            return;
-        }
+    private static void printNode(String nodeContent, String symbol, int lvl) {
         int width = 20;
-
-        String nodeValue = symbol + node.value + symbol;
+        String nodeValue = symbol + nodeContent + symbol;
         int nodeValueLength = nodeValue.length();
-        int nodeValueMargin = (int) Math.ceil((width - nodeValueLength) / 2D);
+        int nodeValueMargin = (int) Math.floor((width - nodeValueLength) / 2D);
         String nodeValue2 = padding(nodeValue, nodeValueMargin, width, ' ');
         String tab = getTab((lvl - 1) * width, ' ');
         String str = tab + nodeValue2;
