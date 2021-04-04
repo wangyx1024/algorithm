@@ -115,4 +115,22 @@ public class U {
         Queue<Integer> queue = new LinkedList<>(Arrays.asList(arr));
         return Code05_Serialization.bfsDeserialize(queue);
     }
+
+    /**
+     * 生成随机二叉树
+     */
+    public static BinaryTreeNode generateRandomBinaryTree(int maxLevel, int maxValue) {
+        return generate(1, maxLevel, maxValue);
+    }
+
+    private static BinaryTreeNode generate(int level, int maxLevel, int maxValue) {
+        if (level > maxLevel || Math.random() < 0.5) {
+            return null;
+        }
+
+        BinaryTreeNode node = new BinaryTreeNode(Checker.generateRandomNumNoMoreThan(maxValue));
+        node.left = generate(level + 1, maxLevel, maxValue);
+        node.right = generate(level + 1, maxLevel, maxValue);
+        return node;
+    }
 }
