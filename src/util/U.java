@@ -4,9 +4,7 @@ import datastruct.BinaryTreeNode;
 import datastruct.SingleNode;
 import tree.Code05_Serialization;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class U {
 
@@ -120,17 +118,36 @@ public class U {
      * 生成随机二叉树
      */
     public static BinaryTreeNode generateRandomBinaryTree(int maxLevel, int maxValue) {
-        return generate(1, maxLevel, maxValue);
+        return generateRandomBinaryTree(1, maxLevel, maxValue);
     }
 
-    private static BinaryTreeNode generate(int level, int maxLevel, int maxValue) {
+    private static BinaryTreeNode generateRandomBinaryTree(int level, int maxLevel, int maxValue) {
         if (level > maxLevel || Math.random() < 0.5) {
             return null;
         }
 
         BinaryTreeNode node = new BinaryTreeNode(Checker.generateRandomNumNoMoreThan(maxValue));
-        node.left = generate(level + 1, maxLevel, maxValue);
-        node.right = generate(level + 1, maxLevel, maxValue);
+        node.left = generateRandomBinaryTree(level + 1, maxLevel, maxValue);
+        node.right = generateRandomBinaryTree(level + 1, maxLevel, maxValue);
         return node;
+    }
+
+    public static BinaryTreeNode getRandomNode(BinaryTreeNode head) {
+        if (head == null) {
+            return null;
+        }
+        List<BinaryTreeNode> arr = new ArrayList<>();
+        fillPrelist(head, arr);
+        int randomIndex = (int) (Math.random() * arr.size());
+        return arr.get(randomIndex);
+    }
+
+    private static void fillPrelist(BinaryTreeNode head, List<BinaryTreeNode> arr) {
+        if (head == null) {
+            return;
+        }
+        arr.add(head);
+        fillPrelist(head.left, arr);
+        fillPrelist(head.right, arr);
     }
 }
