@@ -45,7 +45,7 @@ public class Checker {
         return generateRandomPositiveNumNoMoreThan(value) - generateRandomPositiveNumNoMoreThan(value);
     }
 
-    private static int generateRandomPositiveNumNoMoreThan(int value) {
+    public static int generateRandomPositiveNumNoMoreThan(int value) {
         // [0, 1)的任意小数
         double a = Math.random();
         // [0, range)的任意小数
