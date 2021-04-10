@@ -1,6 +1,6 @@
 package tree;
 
-import datastruct.BinaryTreeNode;
+import datastruct.tree.BinaryTreeNode;
 import util.U;
 
 import java.util.LinkedList;

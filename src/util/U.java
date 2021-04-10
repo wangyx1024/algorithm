@@ -1,7 +1,7 @@
 package util;
 
-import datastruct.BinaryTreeNode;
-import datastruct.SingleNode;
+import datastruct.tree.BinaryTreeNode;
+import datastruct.linkedlist.SingleNode;
 import tree.Code05_Serialization;
 
 import java.util.*;

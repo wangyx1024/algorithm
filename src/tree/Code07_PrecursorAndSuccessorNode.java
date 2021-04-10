@@ -1,8 +1,6 @@
 package tree;
 
-import datastruct.BinaryTreeNode;
-import datastruct.ParentPointerBinaryTreeNode;
-import util.U;
+import datastruct.tree.ParentPointerBinaryTreeNode;
 
 /**
  * 前驱和后继节点

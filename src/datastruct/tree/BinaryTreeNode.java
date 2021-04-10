@@ -1,4 +1,4 @@
-package datastruct;
+package datastruct.tree;
 
 public class BinaryTreeNode {
 

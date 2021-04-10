@@ -1,6 +1,6 @@
 package linkedlist;
 
-import datastruct.SingleNode;
+import datastruct.linkedlist.SingleNode;
 import util.Checker;
 import util.P;
 import util.U;

@@ -1,6 +1,6 @@
 package util;
 
-import datastruct.SingleNode;
+import datastruct.linkedlist.SingleNode;
 
 public class P {
 
