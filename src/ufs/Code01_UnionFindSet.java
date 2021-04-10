@@ -1,4 +1,4 @@
-package dsu;
+package ufs;
 
 
 import java.util.HashMap;
@@ -8,7 +8,7 @@ import java.util.Stack;
 /**
  * 并查集
  */
-public class Code01_DisjointSetUnion {
+public class Code01_UnionFindSet {
 
     public static void main(String[] args) {
         Student s1 = new Student("s1");
@@ -18,24 +18,24 @@ public class Code01_DisjointSetUnion {
         Student s4 = new Student("s4");
         Student s5 = new Student("s5");
 
-        Dsu dsu = new Dsu<Student>();
-        dsu.add(s1);
-        dsu.add(s2);
-        dsu.add(s3);
-        dsu.add(s4);
-        dsu.add(s5);
+        UnionFindSet unionFindSet = new UnionFindSet<Student>();
+        unionFindSet.add(s1);
+        unionFindSet.add(s2);
+        unionFindSet.add(s3);
+        unionFindSet.add(s4);
+        unionFindSet.add(s5);
 
-//        System.out.println(dsu);
-        dsu.union(s1, s2);
-        System.out.println(dsu.groupNum());
-        dsu.union(s2, s3);
-        System.out.println(dsu.groupNum());
+//        System.out.println(unionFindSet);
+        unionFindSet.union(s1, s2);
+        System.out.println(unionFindSet.groupNum());
+        unionFindSet.union(s2, s3);
+        System.out.println(unionFindSet.groupNum());
 
-        dsu.union(s4, s5);
-        System.out.println(dsu.groupNum());
+        unionFindSet.union(s4, s5);
+        System.out.println(unionFindSet.groupNum());
 
 
-        dsu.union(s3, s5);
+        unionFindSet.union(s3, s5);
     }
 
     public static class Student {
@@ -46,12 +46,12 @@ public class Code01_DisjointSetUnion {
         }
     }
 
-    public static class Dsu<V> {
+    public static class UnionFindSet<V> {
 
         private Map<V, V> parentMap;
         private Map<V, Integer> groupSizeMap;
 
-        public Dsu() {
+        public UnionFindSet() {
             this.parentMap = new HashMap<>();
             this.groupSizeMap = new HashMap<>();
         }
