@@ -1,7 +1,6 @@
-package algorithm.slide_window;
+package algorithm.sliding_window;
 
 import algorithm.util.P;
-import sun.awt.image.ImageWatched;
 
 import java.util.LinkedList;
 

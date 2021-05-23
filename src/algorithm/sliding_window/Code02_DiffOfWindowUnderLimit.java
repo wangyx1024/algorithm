@@ -1,4 +1,4 @@
-package algorithm.slide_window;
+package algorithm.sliding_window;
 
 import algorithm.util.Checker;
 import algorithm.util.P;
