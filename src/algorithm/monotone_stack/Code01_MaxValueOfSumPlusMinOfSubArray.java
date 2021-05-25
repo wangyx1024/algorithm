@@ -1,7 +1,9 @@
 package algorithm.monotone_stack;
 
+import algorithm.util.Checker;
 import algorithm.util.P;
 
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -11,10 +13,40 @@ import java.util.Stack;
 public class Code01_MaxValueOfSumPlusMinOfSubArray {
 
     public static void main(String[] args) {
-        int[] arr = {3, 8, 9, 6, 5, 4};
-//        int[] arr = {1, 2, 3};
-        System.out.println(violentSolve(arr));
-        System.out.println(noRepeatElementSolve(arr));
+//        int[] arr = {3, 8, 9, 6, 5, 4};
+//        int[] arr = {1, 1, 2, 2, 3, 3};
+//        int[] arr = {1, 2, 3, 2};
+//        System.out.println(violentSolve(arr));
+//        P.divider();
+//        System.out.println(solve(arr));
+
+//        P.print(getNoRepeatElementNsArr(arr));
+//        P.divider();
+//        P.print(getNsArr(arr));
+
+
+        check();
+    }
+
+    public static void check() {
+        int times = 100000;
+        int[] arr = Checker.generate(10, 10, true, true);
+
+        try {
+            while (times-- > 0) {
+                int r1 = violentSolve(arr);
+                int r2 = solve(arr);
+                if (r1 != r2) {
+                    throw new RuntimeException("r1!=r2");
+                }
+            }
+
+            System.out.println("成功!!!!");
+        } catch (Exception e) {
+            System.out.println("失败！！！！！");
+            P.print(arr);
+            e.printStackTrace();
+        }
     }
 
     private static int violentSolve(int[] arr) {
@@ -28,14 +60,14 @@ public class Code01_MaxValueOfSumPlusMinOfSubArray {
                 int sum = 0;
                 int min = Integer.MAX_VALUE;
                 int index = i;
-                while (index < j) {
+                while (index <= j) {
                     sum += arr[index];
                     min = Math.min(min, arr[index]);
                     index++;
                 }
 
                 int val = min * sum;
-                System.out.println(i + "~" + j);
+//                System.out.println(i + "~" + j + "," + min + "," + sum + "," + val);
                 if (val > valMax) {
                     valMax = val;
                 }
@@ -45,7 +77,7 @@ public class Code01_MaxValueOfSumPlusMinOfSubArray {
         return valMax;
     }
 
-    private static int noRepeatElementSolve(int[] arr) {
+    private static int solve(int[] arr) {
         if (arr == null || arr.length == 0) {
             return 0;
         }
@@ -55,7 +87,7 @@ public class Code01_MaxValueOfSumPlusMinOfSubArray {
         // 如果左近小==-1，表示左边没有比它小的了，所以它左边的势力范围到0，如果右近小==-1，说明右边没有比它小的了，所以右边势力范围到len-1
         // 比如对于i，左、右近小元素下标分别是l、r，那么l+1和r-1就是以下标i为最小值的范围，那么val = sum(arr[l+1, r-1]) * arr[i]，就是以i为最小值的子数组的最大val
         int[][] nsArr = getNsArr(arr);
-        P.print(nsArr);
+//        P.print(nsArr);
 
         int valMax = 0;
         int len = nsArr.length;
@@ -68,7 +100,7 @@ public class Code01_MaxValueOfSumPlusMinOfSubArray {
             }
 
             int val = arr[i] * sum;
-            System.out.println(i + "-" + sum + "-" + val);
+//            System.out.println(lRange + "~" + rRange + "," + arr[i] + "," + sum + "," + val);
             valMax = Math.max(val, valMax);
         }
 
@@ -78,7 +110,7 @@ public class Code01_MaxValueOfSumPlusMinOfSubArray {
     /**
      * [i][0]、[i][1]分别是下标i元素的左右近小
      */
-    private static int[][] getNsArr(int[] arr) {
+    private static int[][] getNoRepeatElementNsArr(int[] arr) {
         int len = arr.length;
         int[][] nsArr = new int[len][2];
         Stack<Integer> stack = new Stack<>();
@@ -101,6 +133,44 @@ public class Code01_MaxValueOfSumPlusMinOfSubArray {
             int stackTop = stack.pop();
             int leftNs = stack.isEmpty() ? -1 : stack.peek();
             nsArr[stackTop] = new int[]{leftNs, -1};
+        }
+
+        return nsArr;
+    }
+
+    private static int[][] getNsArr(int[] arr) {
+        int len = arr.length;
+        int[][] nsArr = new int[len][2];
+        Stack<LinkedList<Integer>> stack = new Stack<>();
+        for (int i = 0; i < len; i++) {
+            // 栈不为空且我比栈顶元素小
+            while (!stack.isEmpty() && arr[i] < arr[stack.peek().peekFirst()]) {
+                // 当前栈顶，要生成ns数据的元素
+                LinkedList<Integer> stackTop = stack.pop();
+                // 右侧近小，让它出栈的元素
+                int rightNs = i;
+                // 左侧近小，它下面的元素，如果栈空就是-1
+                int leftNs = stack.isEmpty() ? -1 : stack.peek().peekLast();
+                while (!stackTop.isEmpty()) {
+                    nsArr[stackTop.pop()] = new int[]{leftNs, rightNs};
+                }
+            }
+
+            if (!stack.isEmpty() && arr[i] == arr[stack.peek().peekFirst()]) {
+                stack.peek().addLast(i);
+            } else {
+                LinkedList newStackTop = new LinkedList();
+                newStackTop.add(i);
+                stack.push(newStackTop);
+            }
+        }
+
+        while (!stack.isEmpty()) {
+            LinkedList<Integer> stackTop = stack.pop();
+            int leftNs = stack.isEmpty() ? -1 : stack.peek().peekLast();
+            while (!stackTop.isEmpty()) {
+                nsArr[stackTop.pop()] = new int[]{leftNs, -1};
+            }
         }
 
         return nsArr;
