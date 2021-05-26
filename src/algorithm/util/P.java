@@ -20,11 +20,30 @@ public class P {
     public static void print(int[] arr, int len) {
         int i = 0;
         while (i < len) {
-            System.out.print(arr[i] + " ");
+            System.out.print(arr[i] + "\t");
             i++;
         }
 
         System.out.println();
+    }
+
+    public static void print(int[][] arr) {
+        int row = arr.length;
+        int col = arr[0].length;
+
+        for (int i = 0; i < row; i++) {
+            System.out.print(i + "|");
+            for (int j = 0; j < col; j++) {
+                String str = arr[i][j] + "";
+                int pad = 3 - str.length();
+                while (pad-- > 0) {
+                    str = " " + str;
+                }
+                System.out.print(str + ", ");
+            }
+
+            System.out.println();
+        }
     }
 
     public static void divider() {

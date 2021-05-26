@@ -9,6 +9,7 @@ import java.util.Stack;
 /**
  * 对于arr的某个子数组sub，可以求得sub元素的和*最小值，求其中最大的
  * arr都是正整数
+ * 如果有负数怎么办
  */
 public class Code01_MaxValueOfSumPlusMinOfSubArray {
 

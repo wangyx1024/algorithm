@@ -2,6 +2,9 @@ package algorithm.recursion;
 
 import algorithm.util.P;
 
+/**
+ * 最长公共子序列
+ */
 public class Code12_LogestCommonSubsequence {
 
     public static void main(String[] args) {

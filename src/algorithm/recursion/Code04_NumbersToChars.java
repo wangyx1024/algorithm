@@ -53,21 +53,21 @@ public class Code04_NumbersToChars {
     /**
      * 暴力递归2，只求数量
      */
-    private static int violentProcess2(String str, int from) {
+    private static int violentProcess2(String str, int i) {
         int len = str.length();
-        if (from == len) {
+        if (i == len) {
             return 1;
         } else {
-            if (str.charAt(from) == '0') {
+            if (str.charAt(i) == '0') {
                 return 0;
             } else {
                 // 否则有两种转换方式
                 // 1.i位置的数字单独转换为一个字母
                 // 2.i位置和i+1位置的两个数字一起转换为一个字母
-                if (from + 1 < len && Integer.parseInt(str.charAt(from) + "" + str.charAt(from + 1)) <= 26) {
-                    return violentProcess2(str, from + 1) + violentProcess2(str, from + 2);
+                if (i + 1 < len && Integer.parseInt(str.charAt(i) + "" + str.charAt(i + 1)) <= 26) {
+                    return violentProcess2(str, i + 1) + violentProcess2(str, i + 2);
                 } else {
-                    return violentProcess2(str, from + 1);
+                    return violentProcess2(str, i + 1);
                 }
             }
         }
@@ -77,11 +77,12 @@ public class Code04_NumbersToChars {
      * dp转移方程
      */
     private static int dpProcess(String str) {
-        // arr，下标=from，范围0~str.length()共str.length()+1
+        // 下标，表i，范围0~len，共len+1
         int len = str.length();
         int[] arr = new int[len + 1];
-        arr[len] = 1;
 
+        // 赋值，arr[i]=?
+        arr[len] = 1;
         for (int i = len - 1; i >= 0; i--) {
             if (i == len) {
                 arr[i] = 1;
@@ -91,7 +92,7 @@ public class Code04_NumbersToChars {
                 } else {
                     // 否则有两种转换方式
                     // 1.i位置的数字单独转换为一个字母
-                    // 2.i位置和i+1位置的两个数字一起转换为一个字母
+                    // 2.i位置和i+1位置的两个数字一起转换为一个字母，有条件
                     if (i + 1 < len && Integer.parseInt(str.charAt(i) + "" + str.charAt(i + 1)) <= 26) {
                         arr[i] = arr[i + 1] + arr[i + 2];
                     } else {

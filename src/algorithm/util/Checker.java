@@ -41,6 +41,35 @@ public class Checker {
         return arr;
     }
 
+    public static int[] generate(int maxSize, int maxValue, boolean positive, boolean noRepeat) {
+        int size = generateRandomPositiveNumNoMoreThan(maxSize);
+
+        int[] arr = new int[size];
+        for (int i = 0; i < size; i++) {
+            if (noRepeat) {
+                while (true) {
+                    boolean contains = false;
+                    int num = positive ? generateRandomPositiveNumNoMoreThan(maxValue) : generateRandomNumNoMoreThan(maxValue);
+                    for (int j = 0; j < i; j++) {
+                        if (arr[j] == num) {
+                            contains = true;
+                            break;
+                        }
+                    }
+
+                    if (!contains) {
+                        arr[i] = num;
+                        break;
+                    }
+                }
+            } else {
+                arr[i] = positive ? generateRandomPositiveNumNoMoreThan(maxValue) : generateRandomNumNoMoreThan(maxValue);
+            }
+        }
+
+        return arr;
+    }
+
     public static int generateRandomNumNoMoreThan(int value) {
         return generateRandomPositiveNumNoMoreThan(value) - generateRandomPositiveNumNoMoreThan(value);
     }

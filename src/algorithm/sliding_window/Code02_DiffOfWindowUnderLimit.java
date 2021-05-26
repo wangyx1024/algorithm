@@ -74,7 +74,7 @@ public class Code02_DiffOfWindowUnderLimit {
         // 如果某个sub不满足条件，那么以sub为子数组的所有数组都不满足条件
         // 算以i元素为窗口左边界时满足条件的子数组数量，i从0~arr.len-1，求和
         // 【实现】
-        // 来两个双端队列largeQueue、smallQueue，分别记录当前窗口内的最大值下标max和最小值下标min，差值diff=arr[max]-arr[min]
+        // 来两个双端队列largeQueue、smallQueue，分别记录当前窗口内的最大、小值下标
         // 遍历arr，下标left代表窗口左边界，left从0~len-1，left更新时，吐出left-1，右边界right代表当前窗口真实右边界的下一位，所以right>=left+1
         // 如果此时窗口内的diff<=limit，吸纳right+1，直到diff>limit或者right到达len-1
 
