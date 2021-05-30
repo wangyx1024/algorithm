@@ -82,4 +82,12 @@ public class Checker {
         // [0, range-1]的任意小数
         return (int) b;
     }
+
+    public static String generateLowerLetterString(int len, int range) {
+        char[] arr = new char[len];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (char) ('a' + generateRandomPositiveNumNoMoreThan(range));
+        }
+        return new String(arr);
+    }
 }

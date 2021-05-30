@@ -13,6 +13,14 @@ public class P {
         System.out.println();
     }
 
+    public static void print(String str) {
+        int i = 0;
+        while (i < str.length()) {
+            System.out.print(str.charAt(i++) + "\t");
+        }
+        System.out.println();
+    }
+
     public static void print(int[] arr) {
         print(arr, arr.length);
     }
@@ -20,8 +28,13 @@ public class P {
     public static void print(int[] arr, int len) {
         int i = 0;
         while (i < len) {
-            System.out.print(arr[i] + "\t");
-            i++;
+            System.out.print(i++ + "\t");
+        }
+        System.out.println();
+
+        i = 0;
+        while (i < len) {
+            System.out.print(arr[i++] + "\t");
         }
 
         System.out.println();
