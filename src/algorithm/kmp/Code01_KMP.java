@@ -131,31 +131,32 @@ public class Code01_KMP {
         }
 
         int len = match.length();
-        int[] nextArr = new int[len];
+        int[] next = new int[len];
         if (len >= 1) {
-            nextArr[0] = -1;
+            next[0] = -1;
         }
         if (len >= 2) {
-            nextArr[1] = 0;
+            next[1] = 0;
         }
 
-        char[] matchArr = match.toCharArray();
+        // 已知next[0..i-1]，求next[i]
+        // next[i-1]=7，说明arr[0~6]==arr[i-8..i-2]
+        // 如果arr[i-1]==arr[next[i-1]]，说明next[i]=next[i-1]+1
+        char[] arr = match.toCharArray();
         for (int i = 2; i < len; i++) {
-            int tail = i - 1;
-            int next = tail;
-            while (true) {
-                next = nextArr[next];
-                if (next == -1) {
-                    break;
-                }
-
-                if (matchArr[next] == matchArr[tail]) {
-                    nextArr[i] = next + 1;
+            // 从i-1开始，比较arr[i-1]和arr[next[i-1]]
+            // point一路往前跳，直到point==0
+            // arr[0]和arr[i-1]都不等，说明next[i]=0了，不用赋值默认就是0
+            int point = i - 1;
+            while (point != 0) {
+                point = next[point];
+                if (arr[i - 1] == arr[point]) {
+                    next[i] = point + 1;
                     break;
                 }
             }
         }
 
-        return nextArr;
+        return next;
     }
 }
