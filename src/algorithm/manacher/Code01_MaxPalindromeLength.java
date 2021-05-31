@@ -9,11 +9,11 @@ import algorithm.util.Checker;
 public class Code01_MaxPalindromeLength {
 
     public static void main(String[] args) {
-//        String str = "abctabcxxcbatcba";
-//        System.out.println(solve(str));
+//        String str = "daadaaaaaa";
 //        System.out.println(violentSolve(str));
+//        System.out.println(solve(str));
 
-        check(1);
+        check(500000);
     }
 
     public static void check(int times) {
@@ -93,7 +93,7 @@ public class Code01_MaxPalindromeLength {
                 }
                 // i的对称点的左边界在R'外
                 else if (i_left < R_) {
-                    pArr[i] = R - i + 1;
+                    pArr[i] = (R - i) * 2 + 1;
                 }
                 // i的对称点的左边界=R'
                 else {
