@@ -31,7 +31,7 @@ public class Code01_MaxValueOfSumPlusMinOfSubArray {
 
     public static void check() {
         int times = 100000;
-        int[] arr = Checker.generate(10, 10, true, true);
+        int[] arr = Checker.generate(10, 10, true, true, true);
 
         try {
             while (times-- > 0) {

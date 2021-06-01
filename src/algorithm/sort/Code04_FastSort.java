@@ -62,31 +62,31 @@ public class Code04_FastSort {
         process(arr, 0, arr.length - 1);
     }
 
-    private static void process(int[] arr, int l, int r) {
-        if (l >= r) {
+    /**
+     * 对于[left, right]的元素做partition
+     * 取某个i作对比元素，从左到右遍历，比它小的放左边，比它大的放右边，和它一样大的放中间
+     */
+    private static void process(int[] arr, int left, int right) {
+        if (left >= right) {
             return;
         }
 
-        int less = l - 1;
-        int more = r + 1;
-        int num = arr[r];
+        int flag = arr[right];
+        int less = left - 1;
+        int more = right + 1;
 
-        int i = l;
+        int i = left;
         while (i < more) {
-            if (arr[i] < num) {
-//                System.out.println("< " + i + " " + less + " " + num + "前" + Arrays.toString(arr));
+            if (arr[i] < flag) {
                 U.swap(arr, i++, ++less);
-//                System.out.println("< " + i + " " + less + " " + num + "后" + Arrays.toString(arr));
-            } else if (arr[i] > num) {
-//                System.out.println("> " + i + " " + less + " " + num + "前" + Arrays.toString(arr));
+            } else if (arr[i] > flag) {
                 U.swap(arr, i, --more);
-//                System.out.println("> " + i + " " + less + " " + num + "后" + Arrays.toString(arr));
             } else {
                 i++;
             }
         }
 
-        process(arr, l, less);
-        process(arr, more, r);
+        process(arr, left, less);
+        process(arr, more, right);
     }
 }

@@ -2,17 +2,17 @@ package algorithm.util;
 
 public class Checker {
 
-    public static void compare(int[]... arrarr) throws RuntimeException {
-        for (int i = 0; i < arrarr[0].length; i++) {
-            for (int j = 0; j < arrarr.length - 1; j++) {
-                int len1 = arrarr[j].length;
-                int len2 = arrarr[j + 1].length;
+    public static void compare(int[]... arrs) throws RuntimeException {
+        for (int i = 0; i < arrs[0].length; i++) {
+            for (int j = 0; j < arrs.length - 1; j++) {
+                int len1 = arrs[j].length;
+                int len2 = arrs[j + 1].length;
                 if (len1 != len2) {
                     throw new RuntimeException("长度都不一样比个jer");
                 }
 
-                int num1 = arrarr[j][i];
-                int num2 = arrarr[j + 1][i];
+                int num1 = arrs[j][i];
+                int num2 = arrs[j + 1][i];
                 if (num1 != num2) {
                     throw new RuntimeException("fucking fucked!!!!!");
                 }
@@ -30,26 +30,19 @@ public class Checker {
         return arr2;
     }
 
-    public static int[] generate(int maxSize, int maxValue) {
-        int size = generateRandomPositiveNumNoMoreThan(maxSize);
-
-        int[] arr = new int[size];
-        for (int i = 0; i < size; i++) {
-            arr[i] = generateRandomNumNoMoreThan(maxValue);
-        }
-
-        return arr;
+    public static int[] generate(int maxLen, int maxValue) {
+        return generate(maxLen, maxValue, true, false, false);
     }
 
-    public static int[] generate(int maxSize, int maxValue, boolean positive, boolean noRepeat) {
-        int size = generateRandomPositiveNumNoMoreThan(maxSize);
+    public static int[] generate(int maxLen, int maxValue, boolean randomLen, boolean positiveValue, boolean noRepeat) {
+        int len = randomLen ? generateRandomPositiveNumNoMoreThan(maxLen) : maxLen;
 
-        int[] arr = new int[size];
-        for (int i = 0; i < size; i++) {
+        int[] arr = new int[len];
+        for (int i = 0; i < len; i++) {
             if (noRepeat) {
                 while (true) {
                     boolean contains = false;
-                    int num = positive ? generateRandomPositiveNumNoMoreThan(maxValue) : generateRandomNumNoMoreThan(maxValue);
+                    int num = positiveValue ? generateRandomPositiveNumNoMoreThan(maxValue) : generateRandomNumNoMoreThan(maxValue);
                     for (int j = 0; j < i; j++) {
                         if (arr[j] == num) {
                             contains = true;
@@ -63,7 +56,7 @@ public class Checker {
                     }
                 }
             } else {
-                arr[i] = positive ? generateRandomPositiveNumNoMoreThan(maxValue) : generateRandomNumNoMoreThan(maxValue);
+                arr[i] = positiveValue ? generateRandomPositiveNumNoMoreThan(maxValue) : generateRandomNumNoMoreThan(maxValue);
             }
         }
 

@@ -28,13 +28,13 @@ public class P {
     public static void print(int[] arr, int len) {
         int i = 0;
         while (i < len) {
-            System.out.print(i++ + "\t");
+            System.out.print(pad(i++ + "", 3, ' ', true) + ",");
         }
         System.out.println();
 
         i = 0;
         while (i < len) {
-            System.out.print(arr[i++] + "\t");
+            System.out.print(pad(arr[i++] + "", 3, ' ', true) + ",");
         }
 
         System.out.println();
@@ -61,5 +61,23 @@ public class P {
 
     public static void divider() {
         System.out.println("\n--------------------我是分割线--------------------");
+    }
+
+    public static String pad(String str, int targetLen, char c, boolean left) {
+        if (str == null) {
+            return "";
+        }
+        int currentLen = str.length();
+        if (currentLen > targetLen) {
+            return str;
+        }
+
+        int diffLen = targetLen - currentLen;
+        String padStr = "";
+        while (diffLen-- > 0) {
+            padStr += c;
+        }
+
+        return left ? padStr + str : str + padStr;
     }
 }
